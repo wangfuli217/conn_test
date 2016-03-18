@@ -1,0 +1,33 @@
+'CreateObject("WScript.Shell").Run "taskkill /IM conn_test_client.exe /F",0
+
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_client.exe -p 5555  -i 55.55.55.163 -r 100 -g 10240   -c 250 -d 100 -o out1.txt",0
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_client.exe -p 15555 -i 55.55.55.163 -r 100 -g 10240   -c 250 -d 100 -o out1r.txt",0
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_client.exe -p 5554  -i 55.55.55.163 -r 17  -g 102400  -c 150 -d 200 -o out2.txt",0
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_client.exe -p 15554 -i 55.55.55.163 -r 17  -g 102400  -c 150 -d 200 -o out2r.txt",0
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_client.exe -p 5553  -i 55.55.55.163 -r 4   -g 1048576 -c 75  -d 300 -o out3.txt",0
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_client.exe -p 15553 -i 55.55.55.163 -r 4   -g 1048576 -c 75  -d 300 -o out3r.txt",0
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_client.exe -p 5552  -i 55.55.55.163 -r 2   -g 5242880 -c 25  -d 1000 -o out4.txt",0
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_client.exe -p 15552 -i 55.55.55.163 -r 2   -g 5242880 -c 25  -d 1000 -o out4r.txt",0
+
+
+do while 1
+Set wmi=GetObject("winmgmts:\\.")
+Set pro_s=wmi.instancesof("win32_process")
+isBreak="0"
+For Each p In pro_s 
+    If p.name="conn_test_client.exe" then
+'	Wscript.Echo p.name + "程序已经运行了"
+	isBreak="1"
+	End If
+	Next
+i = i + 1
+WSH.echo i
+if isBreak="0" then
+Wscript.Echo "conn_test_client已经停止运行了，开始分析结果"
+CreateObject("WScript.Shell").Run "analyse.bat",1
+Wscript.Echo "分析完成"
+Wscript.quit
+End If
+
+Wscript.Sleep 1000
+loop

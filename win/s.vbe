@@ -1,0 +1,9 @@
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_server.exe -p 5555 -g 10240  -r 0 ",0
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_server.exe -p 15555 -g 10240  -r 1 ",0
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_server.exe -p 5554 -g 102400 -r 0",0
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_server.exe -p 15554 -g 102400 -r 1",0
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_server.exe -p 5553 -g 1048576 -r 0 ",0
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_server.exe -p 15553 -g 1048576 -r 1 ",0
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_server.exe -p 5552 -g 10485760 -r 0",0
+CreateObject("WScript.Shell").Run "cmd /cC:\win\conn_test_server.exe -p 15552 -g 10485760 -r 1 ",0
+
